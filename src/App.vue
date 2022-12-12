@@ -1,7 +1,7 @@
 <template>
     <Header/>
     <section class="bg-stone-50 grid grid-cols-4 py-20 px-52 ">
-      <Card v-for="beer in beers" :beer="beer"/>
+      <Card v-for="product in products" :product="product" :key="product"/>
     </section>
 </template>
 
@@ -10,17 +10,17 @@
   import Card from './components/Card.vue';
 
   import { ref } from 'vue';
-  const beers = ref([]);
+  const products = ref([]);
 
-  async function getBeer() {
-    const res = await fetch("https://api.punkapi.com/v2/beers");
+  async function getProduct() {
+    const res = await fetch("https://dummyjson.com/products");
     const resJSON = await res.json();
 
-    beers.value = resJSON;
-    console.log(beers.value);
+    products.value = resJSON.products;
+    console.log(products.value);
   }
 
-  getBeer();
+  getProduct();
 
 </script>
 
