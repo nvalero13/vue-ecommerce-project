@@ -1,6 +1,6 @@
 <template>
     <Header/>
-    <section class="bg-stone-50 grid grid-cols-4 py-20 px-52 ">
+    <section class="bg-blue-50 grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 py-20 px-12 lg:px-20 xl:px-52">
       <Card v-for="product in products" :product="product" :key="product"/>
     </section>
 </template>
