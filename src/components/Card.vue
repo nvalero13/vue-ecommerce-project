@@ -5,7 +5,7 @@
         <div class="text-md my-3 overflow-hidden text-ellipsis h-[70px]">
              <p>{{ product.description }}</p>
         </div>
-        <button class="rounded bg-blue-500 text-white p-3 w-10/12 absolute bottom-4 left-2/4 -translate-x-2/4 hover:bg-blue-600"> Add to cart <i class="fa-solid fa-cart-shopping pl-2"></i></button>
+        <button @click="$emit('addProduct', product)" class="rounded bg-blue-500 text-white p-3 w-10/12 absolute bottom-4 left-2/4 -translate-x-2/4 hover:bg-blue-600"> Add to cart <i class="fa-solid fa-cart-shopping pl-2"></i></button>
     </article>
 </template>
 

@@ -11,31 +11,35 @@
     <button @click="toggleCart" class="text-white border-2 rounded px-5 py-2 border-white hover:text-blue-500 hover:bg-white transition-all relative">
       Cart
       <i class="fa-solid fa-cart-shopping pl-2"></i>
-      <div class="bg-red-500 rounded-full h-[25px] w-[25px] border-white border-2 text-white flex justify-center items-center text-xs font-bold absolute -top-3 -right-3">3</div>
+      <div class="bg-red-500 rounded-full h-[25px] w-[25px] border-white border-2 text-white flex justify-center items-center text-xs font-bold absolute -top-3 -right-3">{{ cartNum }}</div>
     </button>
 
     <transition name="fade">
       <div v-if="showCart" class="absolute top-[100px] right-36 lg:right-48 xl:right-72">
         <div class="rounded-sm absolute bg-white h-[50px] w-[50px] rotate-45 z-20"></div>
-        <div class="rounded-md absolute bg-white h-[200px] w-[300px] -left-44 z-20 p-3">  
+        <div class="rounded-md absolute bg-white w-[300px] -left-44 z-20 p-3  shadow-2xl">  
           <button @click="toggleCart" class="bg-red-500 rounded-full h-[30px] w-[30px] flex justify-center items-center text-white font-bold absolute -top-4 -right-4">X</button>
           
-          <div class="w-full p-2 rounded-sm border border-blue-200">
-            <h3 class="text-lg">Iphone 4</h3>
+          <div v-if="cartProducts.length > 0" v-for="cartProduct in cartProducts" class="w-full p-2 rounded-sm border border-blue-200">
+            <h3 class="text-md font-bold"> {{cartProduct.title}} </h3>
+            <p class="text-sm"> {{cartProduct.price}} €</p>
           </div>
-          
+          <div v-else class="w-full p-2 rounded-sm border border-blue-200">
+            <h3 class="text-lg"> No products in the cart yet </h3>
+          </div>
         </div>
       </div>
     </transition>
-   
   </div>
-  <transition name="fade">
-  <div v-if="showCart" class="absolute top-0 left-0 w-full h-full bg-black opacity-20 z-10"></div>
-</transition>
+
+  <!-- <div v-if="showCart" class="absolute top-0 left-0 w-full h-max bg-black opacity-20 z-10"></div> -->
+
 </template>
 
 <script setup>
 import { ref } from 'vue';
+
+const props = defineProps(["cartNum", "cartProducts"])
 
 const showCart = ref(false)
 
