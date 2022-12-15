@@ -1,5 +1,5 @@
 <template>
-    <button @click="hi" class="hover:scale-105 transition-transform">
+    <router-link :to="{name: 'Detail', params: {id: product.id}}" class="hover:scale-105 transition-transform">
     <article class="bg-white shadow-lg h-[450px] m-3 pt-5 relative">
         <img class=" w-full h-44 object-contain" :src="product.images[0]" alt="Img">
         <div class="flex-column items-center justify-center text-center">
@@ -11,7 +11,7 @@
         </div>
         <button @click.stop="$emit('addProduct', product)" class="bg-blue-500 text-white p-3 w-full absolute bottom-0 left-2/4 -translate-x-2/4 hover:bg-blue-600"> Add to cart <i class="fa-solid fa-cart-shopping pl-2"></i></button>
     </article>
-</button>
+</router-link>
 </template>
 
 <script setup>

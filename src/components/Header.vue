@@ -3,7 +3,7 @@
     <h2 class="text-3xl text-white font-bold">SHOP</h2>
     <nav>
         <ul v-if="!smallScreen" class="flex justify-between gap-10 xl:gap-20 text-white flex-1">
-            <li class="cursor-pointer border-blue-500 border-b-2 py-2 hover:border-white transition-all"><a href="">Perfume</a></li>
+            <li class="cursor-pointer border-blue-500 border-b-2 py-2 hover:border-white transition-all"><router-link to="/detail">Detail</router-link></li>
             <li class="cursor-pointer border-blue-500 border-b-2 py-2 hover:border-white transition-all"><a href="">Smartphones</a></li>
             <li class="cursor-pointer border-blue-500 border-b-2 py-2 hover:border-white transition-all"><a href="">Laptops</a></li>
         </ul>
@@ -23,18 +23,18 @@
     
       <div v-if="showCart" class="absolute top-[60px]">
         <div class="absolute bg-white h-[50px] w-[50px] left-8 rotate-45 z-20"></div>
-        <div class="absolute bg-white w-[400px] -left-72 z-20 pt-3  shadow-2xl">       
+        <div class="absolute bg-white w-[330px] sm:w-[400px] -left-56 sm:-left-72 z-20 pt-3  shadow-2xl">       
           <div  v-if="cartProducts.length > 0">
-          <div v-for="cartProduct in cartProducts" class="mx-2 p-2 flex justify-between border-b-2 border-blue-500">
-            <div class="flex flex-start gap-3 pb-3 ">
+          <div v-for="cartProduct in cartProducts" class="mx-2 p-2 flex justify-between items-center border-b-2 border-blue-500">
+            <div class="flex items-center gap-3">
               <img class="h-12 w-12 object-contain" :src="cartProduct.images[0]" alt="Image"/>
-              <div class="flex flex-col">
-                <h3 class="text-md w-64 text-ellipsis whitespace-nowrap overflow-hidden uppercase"> {{cartProduct.title}} </h3>
+              <div>
+                <h3 class="text-md w-56 text-ellipsis whitespace-nowrap overflow-hidden uppercase"> {{cartProduct.title}} </h3>
                 <p class="text-sm text-blue-500"> {{cartProduct.price}}€</p>
               </div>
             </div>
               <!-- <button class="bg-red-500 px-4 hover:bg-red-600"><i class="fa fa-trash text-white"></i></button> -->
-              <button @click="$emit('removeProduct', cartProduct)" class="p-2"><i class="fa fa-trash text-xl text-red-500 hover:text-red-600"></i></button>
+              <button @click="$emit('removeProduct', cartProduct)" class="px-2"><i class="fa fa-trash text-xl text-red-500 hover:text-red-600"></i></button>
         
           </div>
 
