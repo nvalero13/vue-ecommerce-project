@@ -6,7 +6,7 @@
     @removeProduct="removeProduct"
   />
   <section
-    class="bg-blue-50 grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 py-10 px-12 lg:px-20 xl:px-52"
+    class="bg-blue-50 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 py-10 px-12 lg:px-20 xl:px-52"
   >
     <Card
       @addProduct="addProduct"

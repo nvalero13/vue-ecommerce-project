@@ -2,11 +2,15 @@
   <div class="flex justify-around items-center bg-blue-500 py-6 relative">
     <h2 class="text-3xl text-white font-bold">SHOP</h2>
     <nav>
-        <ul class="flex justify-between text-white flex-1 gap-20">
+        <ul v-if="!smallScreen" class="flex justify-between gap-10 xl:gap-20 text-white flex-1">
             <li class="cursor-pointer border-blue-500 border-b-2 py-2 hover:border-white transition-all"><a href="">Perfume</a></li>
             <li class="cursor-pointer border-blue-500 border-b-2 py-2 hover:border-white transition-all"><a href="">Smartphones</a></li>
             <li class="cursor-pointer border-blue-500 border-b-2 py-2 hover:border-white transition-all"><a href="">Laptops</a></li>
         </ul>
+        <div v-else>
+        <button @click="toggleNav" class="text-white"><i class="fa-solid  fa-bars"></i></button>
+        
+      </div>
     </nav>
 
     <div class="relative">
@@ -47,6 +51,13 @@
     </div>
   </div>
 
+  <transition name="slidedown">
+  <ul v-show="navToggled" class="flex justify-start gap-5 flex-col w-full bg-white p-3 z-20 border-b-2 border-blue-500">
+        <li class="cursor-pointer border-b-2 py-2 hover:border-blue-500 transition-all"><a href="">Perfume</a></li>
+        <li class="cursor-pointer  border-b-2 py-2 hover:border-blue-500 transition-all"><a href="">Smartphones</a></li>
+        <li class="cursor-pointer  border-b-2 py-2 hover:border-blue-500 transition-all"><a href="">Laptops</a></li>
+  </ul>
+</transition>
   <!-- <div v-if="showCart" class="absolute top-0 left-0 w-full h-max bg-black opacity-20 z-10"></div> -->
 
 </template>
@@ -61,13 +72,33 @@ const showCart = ref(false)
 function toggleCart() {
   showCart.value = !showCart.value
 }
+
+const navToggled = ref(false)
+function toggleNav() {
+  navToggled.value = !navToggled.value
+}
+
+
+const smallScreen = ref(false)
+window.addEventListener('load', () => window.innerWidth < 700 ? smallScreen.value = true : smallScreen.value = false);
+window.addEventListener('resize', () => window.innerWidth < 700 ? smallScreen.value = true : smallScreen.value = false);
 </script>
 
 <style>
-.fade-enter-active, .fade-leave-active {
-  transition: opacity 0.5s;
+.slidedown-enter-active,
+.slidedown-leave-active {
+  transition: max-height 0.5s ease-in-out;
 }
-.fade-enter, .fade-leave-to {
-  opacity: 0;
+
+.slidedown-enter-to,
+.slidedown-leave-from {
+  overflow: hidden;
+  max-height: 1000px;
+}
+
+.slidedown-enter-from,
+.slidedown-leave-to {
+  overflow: hidden;
+  max-height: 0;
 }
 </style>
